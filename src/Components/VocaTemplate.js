@@ -3,10 +3,10 @@ import VocaList from "../Components/VocaList";
 
 const VocaTemplate = () => {
     return (
-        <div>
+        <VocaTemplate>
             <div>Vocatemplate 컴포넌트입니다</div>
             <VocaList></VocaList>
-        </div>
+        </VocaTemplate>
     )
 }
 
