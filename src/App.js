@@ -1,7 +1,7 @@
 import './App.css';
+import React from "react";
 import styled from "styled-components";
 import { Route, Switch } from "react-router-dom";
-import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlug } from "@fortawesome/free-solid-svg-icons";
 

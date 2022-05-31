@@ -1,13 +1,18 @@
 // componenets
 import VocaList from "../Components/VocaList";
+import styled from 'styled-components';
 
 const VocaTemplate = () => {
     return (
-        <VocaTemplate>
+        <VocaTemplateStyle>
             <div>Vocatemplate 컴포넌트입니다</div>
             <VocaList></VocaList>
-        </VocaTemplate>
+        </VocaTemplateStyle>
     )
 }
+
+const VocaTemplateStyle = styled.div`
+    
+`
 
 export default VocaTemplate;
