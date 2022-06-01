@@ -12,6 +12,7 @@ const Voca = ({list}) => {
             <Example>{list.example}</Example>
             </Description>
             </div>
+
             <DoneBtn>
             <FontAwesomeIcon icon={faBolt}></FontAwesomeIcon>
             </DoneBtn>
@@ -23,6 +24,7 @@ const VocaStyle = styled.div`
     font-size: 20px;
     background-color: aliceblue;
     position: relative;
+    z-index: 10;
 `
 
 const Description = styled.button`
