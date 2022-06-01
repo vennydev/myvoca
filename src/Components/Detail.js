@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { createVoca } from "../redux/modules/vocabulary";
 
 const Detail = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const [inputs, setInputs] = useState({
@@ -17,17 +18,19 @@ const Detail = () => {
   });
 
   const { word, desc, example } = inputs;
-  const history = useHistory();
 
+  // ref로 input 3개에 접근
   const nameInput = useRef(null);
   const descInput = useRef(null);
   const exampleInput = useRef(null);
 
+  // input state 업데이트
   const onChange = (e) => {
     const { value, name } = e.target;
     const new_voca = { ...inputs, [name]: value };
     setInputs(new_voca);
   };
+
   return (
     <DetailStyle>
       <InputWrapper>
@@ -57,9 +60,13 @@ const Detail = () => {
         />
       </InputWrapper>
       <UpdateBtn
-        onClick={() => {
-          history.push("/");
-          dispatch(createVoca(inputs));
+        onClick={(e) => {
+          if (word !== "" && desc !== "" && example !== "") {
+            dispatch(createVoca(inputs));
+            history.push("/");
+          } else {
+            alert("모든 칸을 채워주세요! :(");
+          }
         }}
       >
         <FontAwesomeIcon icon={faPlug}></FontAwesomeIcon>
