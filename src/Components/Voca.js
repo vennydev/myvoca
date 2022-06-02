@@ -3,11 +3,11 @@ import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBolt } from "@fortawesome/free-solid-svg-icons";
 import { updateVoca } from "../redux/modules/vocabulary";
-import { useSelector } from "react-redux";
 
 const Voca = ({ list, id, completed }) => {
   const dispatch = useDispatch();
   return (
+    // props로 받은 completed로 조건부 styling 실행
     <VocaStyle completed={completed}>
       <div>
         <Word>{list.word}</Word>

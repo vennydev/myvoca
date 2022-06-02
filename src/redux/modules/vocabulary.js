@@ -1,3 +1,14 @@
+import { db } from "../../firebase";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore";
+
 // action type
 const LOAD = "voca/LOAD";
 const CREATE = "voca/CREATE";
@@ -32,22 +43,44 @@ const initialState = {
 
 // action creator
 export const loadVoca = (voca) => {
-  return { type: LOAD, voca };
+  return { type: LOAD, voca: voca };
 };
 
 export const createVoca = (voca) => {
-  return { type: CREATE, voca };
+  return { type: CREATE, voca: voca };
 };
 
 export const updateVoca = (idx) => {
-  return { type: UPDATE, idx };
+  return { type: UPDATE, idx: idx };
+};
+
+// middleware
+export const loadVocaFB = () => {
+  return async function (dispatch) {
+    const voca_data = await getDocs(collection(db, "voca_list"));
+    let voca_list = [];
+    voca_data.forEach((v) => {
+      voca_list.push({ id: v.id, ...v.data() });
+    });
+    dispatch(loadVoca(voca_list));
+  };
+};
+
+export const createVocaFB = (voca) => {
+  return async function (dispatch) {
+    const docRef = await addDoc(collection(db, "voca_list"), voca);
+    const _voca = (await getDoc(docRef)).data();
+    const voca_list = { id: docRef.id, ..._voca };
+    dispatch(createVoca(voca_list));
+  };
 };
 
 // reducer
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case "voca/LOAD":
-      return state;
+    case "voca/LOAD": {
+      return { list: action.voca };
+    }
     case "voca/CREATE": {
       const new_voca_list = [...state.list, action.voca];
       return { list: new_voca_list };

@@ -1,21 +1,32 @@
 // module
 import "./App.css";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Route, Switch } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { db } from "./firebase";
+import { loadVocaFB } from "./redux/modules/vocabulary";
 
 // component
 import VocaTemplate from "./Components/VocaTemplate";
 import Detail from "./Components/Detail";
 
 function App() {
-  const toHome = () => {
-    window.location.href = "/";
-  };
-
+  const dispatch = useDispatch();
+  let history = useHistory();
+  useEffect(() => {
+    dispatch(loadVocaFB());
+  }, []);
   return (
     <AppStyle className="App">
-      <Title onClick={toHome}>Charger</Title>
+      <Title
+        onClick={() => {
+          history.push("/");
+        }}
+      >
+        (-_ -)
+      </Title>
       <Switch>
         <Route path="/" exact component={VocaTemplate}></Route>
         <Route path="/detail" component={Detail}></Route>

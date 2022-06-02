@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlug } from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { createVoca } from "../redux/modules/vocabulary";
+import { createVocaFB } from "../redux/modules/vocabulary";
 
 const Detail = () => {
   const history = useHistory();
@@ -62,7 +62,7 @@ const Detail = () => {
       <UpdateBtn
         onClick={(e) => {
           if (word !== "" && desc !== "" && example !== "") {
-            dispatch(createVoca(inputs));
+            dispatch(createVocaFB(inputs));
             history.push("/");
           } else {
             alert("모든 칸을 채워주세요! :(");
@@ -82,18 +82,19 @@ const DetailStyle = styled.div`
   box-sizing: border-box;
 `;
 
-const Input = styled.input`
-  font-size: 20px;
-  border-radius: 2px;
-  margin: 20px 0px;
-  padding: 5px 10px;
-`;
-
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   padding: 0 50px;
   height: 100%;
+`;
+
+const Input = styled.input`
+  font-size: 22px;
+  border-radius: 2px;
+  margin: 20px 0px;
+  padding: 7px 12px;
 `;
 
 const UpdateBtn = styled.button`

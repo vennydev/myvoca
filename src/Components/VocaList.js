@@ -6,7 +6,7 @@ import Voca from "./Voca";
 
 const VocaList = () => {
   const voca_lists = useSelector((state) => state.voca.list);
-  console.log(voca_lists);
+
   return (
     <VocaListStyle>
       {voca_lists.map((l, idx) => {
